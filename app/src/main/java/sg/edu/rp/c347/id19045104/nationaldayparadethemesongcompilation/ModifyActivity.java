@@ -43,10 +43,10 @@ public class ModifyActivity extends AppCompatActivity {
         Intent i = getIntent();
         data = (Song) i.getSerializableExtra("data");
 
-        etSID.setText(data.get_id());
+        etSID.setText(String.valueOf(data.get_id()));
         etSTitle.setText(data.getTitle());
         etSinger.setText(data.getSingers());
-        etYear.setText(data.getYear());
+        etYear.setText(String.valueOf(data.getYear()));
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override

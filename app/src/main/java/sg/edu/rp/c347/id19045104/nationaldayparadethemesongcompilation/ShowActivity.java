@@ -43,6 +43,19 @@ public class ShowActivity extends AppCompatActivity {
                 startActivityForResult(i, 9);
             }
         });
+
+        btn5stars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                al = new ArrayList<Song>();
+                DBHelper dbh = new DBHelper(ShowActivity.this);
+                al.clear();
+                al.addAll(dbh.getAllSong5Star());
+                dbh.close();
+                aa = new SongListArrayAdapter(ShowActivity.this, R.layout.row, al);
+                lv.setAdapter(aa);
+            }
+        });
     }
 
     @Override
@@ -52,8 +65,4 @@ public class ShowActivity extends AppCompatActivity {
 //            showList();
         }
     }
-
-//    public void showList() {
-//
-//    }
 }

@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         etSong = findViewById(R.id.etSong);
         etSinger = findViewById(R.id.etSinger);
         etYear = findViewById(R.id.etYear);
-
+        rgStar = findViewById(R.id.rgStar);
         btnInsert = findViewById(R.id.btnInsert);
         btnShow = findViewById(R.id.btnShow);
 
@@ -38,10 +39,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String song = etSong.getText().toString();
                 String singer = etSinger.getText().toString();
-                String year = etYear.getText().toString();
+                int year = Integer.valueOf(etYear.getText().toString());
+                int stars = rgStar.getCheckedRadioButtonId();
                 DBHelper dbh = new DBHelper(MainActivity.this);
+                long inserted_id = dbh.insertSong(song,singer,year,stars);
 
-
+                if (inserted_id != -1){
+                    Toast.makeText(MainActivity.this, "Insert Successfull", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -52,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 al.clear();
                 al.addAll(dbh.getAllSong());
                 Intent i = new Intent(MainActivity.this, ShowActivity.class);
+
+
+                startActivity(i);
+
             }
         });
 

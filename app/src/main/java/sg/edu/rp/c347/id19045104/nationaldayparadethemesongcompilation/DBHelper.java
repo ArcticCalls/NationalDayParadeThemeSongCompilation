@@ -56,13 +56,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public long insertSong(String songContent) {
+    public long insertSong(String title, String singers, int year, int stars) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_TITLE, songContent);
-        values.put(COLUMN_SINGERS, songContent);
-        values.put(COLUMN_YEAR, songContent);
-        values.put(COLUMN_STARS, songContent);
+        values.put(COLUMN_TITLE, title);
+        values.put(COLUMN_SINGERS, singers);
+        values.put(COLUMN_YEAR, year);
+        values.put(COLUMN_STARS, stars);
         long result = db.insert(TABLE_SONG, null, values);
         db.close();
         Log.d("SQL Insert","ID:"+ result); //id returned, shouldn’t be -1

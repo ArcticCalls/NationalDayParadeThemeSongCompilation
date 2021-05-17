@@ -10,7 +10,7 @@ import android.widget.RadioButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class ThirdActivity extends AppCompatActivity {
+public class ModifyActivity extends AppCompatActivity {
 
     EditText etSID, etSTitle, etSinger, etYear;
     RadioButton btnRadio1, btnRadio2, btnRadio3, btnRadio4, btnRadio5;
@@ -20,7 +20,7 @@ public class ThirdActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_modify);
 
         //initialize the variables with UI here
         etSID = findViewById(R.id.etSID);
@@ -44,16 +44,16 @@ public class ThirdActivity extends AppCompatActivity {
         etSID.setText(data.get_id());
         etSTitle.setText(data.getTitle());
         etSinger.setText(data.getSingers());
-        etYear.setText(data.getYears());
+        etYear.setText(data.getYear());
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHelper dbh = new DBHelper(ThirdActivity.this);
-                data.set_ID(etSID.getText().toString());
-                data.setNoteContent(etSTitle.getText().toString());
-                data.setNoteContent(etSinger.getText().toString());
-                data.setNoteContent(etYear.getText().toString());
+                DBHelper dbh = new DBHelper(ModifyActivity.this);
+                data.set_id(etSID.getText().toString());
+                data.setTitle(etSTitle.getText().toString());
+                data.setSingers(etSinger.getText().toString());
+                data.setYear(etYear.getText().toString());
                 dbh.updateNote(data);
                 dbh.close();
                 setResult(RESULT_OK,i);
@@ -65,7 +65,7 @@ public class ThirdActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHelper dbh = new DBHelper(EditActivity.this);
+                DBHelper dbh = new DBHelper(ModifyActivity.this);
                 dbh.deleteNote(data.getId());
                 dbh.close();
                 setResult(RESULT_OK,i);

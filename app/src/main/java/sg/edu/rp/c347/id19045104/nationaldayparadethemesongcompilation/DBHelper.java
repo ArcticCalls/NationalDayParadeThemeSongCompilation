@@ -39,8 +39,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_NOTE);
-        //onCreate(db);
         db.execSQL("ALTER TABLE " + TABLE_SONG + " ADD COLUMN module_name TEXT ");
 
     }
@@ -61,34 +59,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<Song> getAllSong() {
         ArrayList<Song> songs = new ArrayList<Song>();
 
-        String selectQuery = "SELECT " + COLUMN_ID + "," + COLUMN_TITLE + "," + COLUMN_SINGERS + ","
-                + COLUMN_YEAR +"," + COLUMN_STARS + " FROM " + TABLE_SONG;
-
         SQLiteDatabase db = this.getReadableDatabase();
-/*
-       //this is to filter the song with 5 stars(might be wrong or correct)
 
         String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGERS, COLUMN_YEAR, COLUMN_STARS  };
-        String condition = COLUMN_STARS + " WHERE ";
-        String[] args = { "stars == 5"};
+        String condition =  COLUMN_STARS + "=" + 5 ;
 
-        Cursor cursor = db.query(TABLE_SONG, columns, condition, args, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            do {
-                int id = cursor.getInt(0);
-                String title = cursor.getString(1);
-                String singer = cursor.getString(2);
-                Integer year = cursor.getInt(3);
-                Integer stars = cursor.getInt(4);
-
-                Song song = new Song(id, title, singer, year, stars);
-                songs.add(song);
-            } while (cursor.moveToNext());
-        }
-
-*/
-
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = db.query(TABLE_SONG, columns, condition, null,null, null, null);
         if (cursor.moveToFirst()) {
             do {
                 int id = cursor.getInt(0);

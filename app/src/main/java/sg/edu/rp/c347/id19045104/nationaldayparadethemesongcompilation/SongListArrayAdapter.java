@@ -19,8 +19,8 @@ public class SongListArrayAdapter extends ArrayAdapter<Song> {
     TextView textViewYear, textViewTitle, textViewSinger;
 
 
-    public SongListArrayAdapter(Context context, int resource, ArrayList<Song> notes) {
-        super(context, resource, notes);
+    public SongListArrayAdapter(Context context, int resource, ArrayList<Song> songs) {
+        super(context, resource, songs);
         this.context = context;
         this.songs = songs;
         this.resource = resource;
@@ -42,7 +42,7 @@ public class SongListArrayAdapter extends ArrayAdapter<Song> {
         iv5 = rowView.findViewById(R.id.imageView5star);
 
         Song currentSong = songs.get(position);
-        textViewYear.setText(currentSong.getYear());
+        textViewYear.setText(String.valueOf(currentSong.getYear()));
         textViewTitle.setText(currentSong.getTitle());
         textViewSinger.setText(currentSong.getSingers());
 

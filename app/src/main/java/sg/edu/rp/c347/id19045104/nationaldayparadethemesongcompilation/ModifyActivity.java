@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ModifyActivity extends AppCompatActivity {
 
     EditText etSID, etSTitle, etSinger, etYear;
-    RadioButton btnRadio1, btnRadio2, btnRadio3, btnRadio4, btnRadio5;
+    RadioButton rgstar;
+    RadioGroup rgStars;
     Button btnUpdate, btnDelete, btnCancel;
     Song data;
 
@@ -30,11 +32,8 @@ public class ModifyActivity extends AppCompatActivity {
         etSinger = findViewById(R.id.etSinger);
         etYear = findViewById(R.id.etYear);
 
-        btnRadio1 = findViewById(R.id.btnRadio1);
-        btnRadio2 = findViewById(R.id.btnRadio2);
-        btnRadio3 = findViewById(R.id.btnRadio3);
-        btnRadio4 = findViewById(R.id.btnRadio4);
-        btnRadio5 = findViewById(R.id.btnRadio5);
+        rgStars = findViewById(R.id.rgStar);
+        rgstar = findViewById(rgStars.getCheckedRadioButtonId());
 
         btnUpdate = findViewById(R.id.btnUpdate);
         btnDelete = findViewById(R.id.btnDelete);
@@ -56,21 +55,8 @@ public class ModifyActivity extends AppCompatActivity {
                 data.setTitle(etSTitle.getText().toString());
                 data.setSingers(etSinger.getText().toString());
                 data.setYear(Integer.parseInt(etYear.getText().toString()));
-                if (data.getStars() == 1){
-                    btnRadio1.setChecked(true);
-                }
-                else if (data.getStars() == 2){
-                    btnRadio2.setChecked(true);
-                }
-                else if (data.getStars() == 3){
-                    btnRadio3.setChecked(true);
-                }
-                else if (data.getStars() == 4){
-                    btnRadio4.setChecked(true);
-                }
-                else if (data.getStars() == 5){
-                    btnRadio5.setChecked(true);
-                }
+                int star = Integer.valueOf(rgstar.getText().toString());
+                data.setStars(star);
                 data.setYear(Integer.parseInt(etYear.getText().toString()));
                 dbh.updateNote(data);
                 dbh.close();

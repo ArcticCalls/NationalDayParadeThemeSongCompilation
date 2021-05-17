@@ -77,11 +77,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
 /*
+//this is to filter the song with 5 stars(might be wrong or correct)
         String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGERS, COLUMN_YEAR, COLUMN_STARS  };
-        String condition = COLUMN_STARS + " Like ?";
-        String[] args = { "%" +  keyword + "%"};
-        
- */
+        String condition = COLUMN_STARS + " WHERE ";
+        String[] args = { "stars == 5"};
+
+*/
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {

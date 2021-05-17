@@ -50,10 +50,12 @@ public class ModifyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DBHelper dbh = new DBHelper(ModifyActivity.this);
-                data.set_id(etSID.getText().toString());
+               // data.set_id(etSID.getText().toString());
+                data.set_id(Integer.parseInt(etSID.getText().toString()));
                 data.setTitle(etSTitle.getText().toString());
                 data.setSingers(etSinger.getText().toString());
-                data.setYear(etYear.getText().toString());
+               // data.setYear(etYear.getText().toString());
+                data.setYear(Integer.parseInt(etYear.getText().toString()));
                 dbh.updateNote(data);
                 dbh.close();
                 setResult(RESULT_OK,i);
@@ -66,7 +68,7 @@ public class ModifyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DBHelper dbh = new DBHelper(ModifyActivity.this);
-                dbh.deleteNote(data.getId());
+                dbh.deleteNote(data.get_id());
                 dbh.close();
                 setResult(RESULT_OK,i);
                 finish();

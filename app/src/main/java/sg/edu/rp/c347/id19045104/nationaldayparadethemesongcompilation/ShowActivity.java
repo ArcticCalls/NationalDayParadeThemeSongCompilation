@@ -28,15 +28,9 @@ public class ShowActivity extends AppCompatActivity {
 
         DBHelper dbh = new DBHelper(ShowActivity.this);
         al.clear();
-        al.addAll(dbh.getAllNotes(""));
+        al.addAll(dbh.getAllSong());
         dbh.close();
 
-        String txt = "";
-        for (int i = 0; i< al.size(); i++){
-            Note tmp = al.get(i);
-            txt += "ID:" + tmp.getId() + ", " + tmp.getNoteContent() + "\n";
-        }
-        tvDBContent.setText(txt);
         aa.notifyDataSetChanged();
 
 

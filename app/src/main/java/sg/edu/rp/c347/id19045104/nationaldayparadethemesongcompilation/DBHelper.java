@@ -56,13 +56,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public long insertSong(String songContent) {
+    public long insertSong(String title, String singers, int year, int stars) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_TITLE, songContent);
-        values.put(COLUMN_SINGERS, songContent);
-        values.put(COLUMN_YEAR, songContent);
-        values.put(COLUMN_STARS, songContent);
+        values.put(COLUMN_TITLE, title);
+        values.put(COLUMN_SINGERS, singers);
+        values.put(COLUMN_YEAR, year);
+        values.put(COLUMN_STARS, stars);
         long result = db.insert(TABLE_SONG, null, values);
         db.close();
         Log.d("SQL Insert","ID:"+ result); //id returned, shouldn’t be -1
@@ -76,6 +76,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 + COLUMN_YEAR +"," + COLUMN_STARS + " FROM " + TABLE_SONG;
 
         SQLiteDatabase db = this.getReadableDatabase();
+/*
+        String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGERS, COLUMN_YEAR, COLUMN_STARS  };
+        String condition = COLUMN_STARS + " Like ?";
+        String[] args = { "%" +  keyword + "%"};
+        
+ */
+
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {

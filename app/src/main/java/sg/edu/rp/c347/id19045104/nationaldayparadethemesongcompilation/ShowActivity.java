@@ -62,7 +62,7 @@ public class ShowActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == 9){
-//            showList();
+            aa.notifyDataSetChanged();
         }
     }
 }

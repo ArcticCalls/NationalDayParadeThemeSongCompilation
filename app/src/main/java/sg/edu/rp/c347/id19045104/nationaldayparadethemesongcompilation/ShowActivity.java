@@ -38,25 +38,8 @@ public class ShowActivity extends AppCompatActivity {
                 startActivityForResult(i, 9);
             }
         });
-//        btn5stars.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                DBHelper dbh = new DBHelper(ShowActivity.this);
-//                al.clear();
-//                al.addAll(dbh.getAllSong());
-//                dbh.close();
-//
-//                String txt = "";
-//                for (int i = 0; i< al.size(); i++){
-//                    Song tmp = al.get(i);
-//                    txt += "ID:" + tmp.get_id() + ", " + tmp.getTitle() + "\n";
-//                }
-//                tvDBContent.setText(txt);
-//                aa.notifyDataSetChanged();
-//            }
-//        });
-
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

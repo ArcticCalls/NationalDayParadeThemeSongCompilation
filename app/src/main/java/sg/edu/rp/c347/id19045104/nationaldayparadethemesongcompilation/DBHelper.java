@@ -56,6 +56,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    //Normal retrieve
     public ArrayList<Song> getAllSong() {
         ArrayList<Song> songs = new ArrayList<Song>();
 
@@ -82,9 +83,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-/*
-//5 star filter
-    public ArrayList<Song> getAllSong() {
+    //5 star filter retrieve
+    public ArrayList<Song> getAllSong5Star() {
         ArrayList<Song> songs = new ArrayList<Song>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -109,7 +109,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return songs;
     }
-    */
+
 
     public int updateNote(Song data){
         SQLiteDatabase db = this.getWritableDatabase();

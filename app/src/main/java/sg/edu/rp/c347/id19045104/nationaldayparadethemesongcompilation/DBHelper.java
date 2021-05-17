@@ -34,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 COLUMN_STARS + " INTEGER)";
         db.execSQL(createNoteTableSql);
 
-        
+
     }
 
     @Override

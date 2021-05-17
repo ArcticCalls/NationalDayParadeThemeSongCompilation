@@ -33,14 +33,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 COLUMN_YEAR + " INTEGER, " +
                 COLUMN_STARS + " INTEGER)";
         db.execSQL(createNoteTableSql);
-
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("ALTER TABLE " + TABLE_SONG + " ADD COLUMN module_name TEXT ");
-
     }
 
     public long insertSong(String title, String singers, int year, int stars) {

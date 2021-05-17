@@ -27,7 +27,12 @@ public class ShowActivity extends AppCompatActivity {
         btn5stars = findViewById(R.id.btn5stars);
         lv = findViewById(R.id.lv);
 
-        showList();
+        al = new ArrayList<Song>();
+        DBHelper dbh = new DBHelper(ShowActivity.this);
+        al.addAll(dbh.getAllSong());
+        dbh.close();
+        aa = new SongListArrayAdapter(ShowActivity.this, R.layout.row, al);
+        lv.setAdapter(aa);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -44,16 +49,11 @@ public class ShowActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == 9){
-            showList();
+//            showList();
         }
     }
 
-    public void showList() {
-        al = new ArrayList<Song>();
-        DBHelper dbh = new DBHelper(ShowActivity.this);
-        al.addAll(dbh.getAllSong());
-        dbh.close();
-        aa = new SongListArrayAdapter(ShowActivity.this, R.layout.row, al);
-        lv.setAdapter(aa);
-    }
+//    public void showList() {
+//
+//    }
 }

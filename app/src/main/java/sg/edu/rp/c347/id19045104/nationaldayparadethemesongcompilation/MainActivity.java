@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                 int stars = rgStar.getCheckedRadioButtonId();
                 DBHelper dbh = new DBHelper(MainActivity.this);
                 long inserted_id = dbh.insertSong(song,singer,year,stars);
-
                 if (inserted_id != -1){
                     Toast.makeText(MainActivity.this, "Insert Successfull", Toast.LENGTH_SHORT).show();
                 }
@@ -53,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent i = new Intent(MainActivity.this, ShowActivity.class);
                 startActivity(i);
 

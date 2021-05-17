@@ -35,17 +35,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(createNoteTableSql);
 
 
-/*
-        //Dummy records, to be inserted when the database is created
-        for (int i = 0; i< 4; i++) {
-            ContentValues values = new ContentValues();
-            values.put(COLUMN_NOTE_CONTENT, "Data number " + i);
-            db.insert(TABLE_SONG, null, values);
-        }
-        Log.i("info", "dummy records inserted");
-
- */
-
     }
 
     @Override
@@ -77,11 +66,27 @@ public class DBHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
 /*
+       //this is to filter the song with 5 stars(might be wrong or correct)
+
         String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGERS, COLUMN_YEAR, COLUMN_STARS  };
-        String condition = COLUMN_STARS + " Like ?";
-        String[] args = { "%" +  keyword + "%"};
-        
- */
+        String condition = COLUMN_STARS + " WHERE ";
+        String[] args = { "stars == 5"};
+
+        Cursor cursor = db.query(TABLE_SONG, columns, condition, args, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                String singer = cursor.getString(2);
+                Integer year = cursor.getInt(3);
+                Integer stars = cursor.getInt(4);
+
+                Song song = new Song(id, title, singer, year, stars);
+                songs.add(song);
+            } while (cursor.moveToNext());
+        }
+
+*/
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
